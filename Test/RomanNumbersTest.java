@@ -7,8 +7,12 @@ public class RomanNumbersTest {
     void shouldConvert1ToI(){
         assertEquals("I", toRoman(1));
     }
+
     private String toRoman(int number) {
-        return "II";
+        if(number == 1) return "I";
+        if(number == 2) return "II";
+        return null;
+
     }
 
 
