@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RomanNumbersTest {
-    StringBuilder romanNumbers = new StringBuilder();
+    StringBuilder romanNumbers = new StringBuilder("");
 
     @Test
     void shouldConvert1ToI(){
@@ -11,12 +11,40 @@ public class RomanNumbersTest {
     }
 
     private String toRoman(int number) {
-        if (number == 4) return "IV";
-        if (number == 5) return "V";
-        //if( number > 5) return
-        return loopAll(number).toString();
 
-    }
+        if (number == 4){
+            return romanNumbers.append("IV").toString();
+        }
+        if (number == 5){
+            return romanNumbers.append("V").toString();
+        }
+
+        if (number == 9){
+            return romanNumbers.append("IX").toString();
+        }
+
+        if (number == 10){
+            return romanNumbers.append("X").toString();
+        }
+
+
+        int tens = (number/10)%10;
+
+                if (number > 10){
+                        for (int i = 0; i < tens; i++) {
+                            romanNumbers.append("X");
+                        }
+                        number = number - 10*tens;
+                    }
+                       if (number > 5 ){
+                        romanNumbers.append("V");
+                        number = number - 5;
+                    }
+
+                    return loopAll(number).toString();
+
+                }
+
 
 
     @Test
@@ -32,7 +60,21 @@ public class RomanNumbersTest {
     void ShouldConvert5ToV(){ assertEquals ("V", toRoman(5));}
 
 
-   public StringBuilder loopAll(int number){
+    @Test
+    void ShouldConvert8ToVIII(){ assertEquals ("VIII", toRoman(8));}
+
+
+    @Test
+    void ShouldConvert10ToX(){ assertEquals ("X", toRoman(10));}
+
+
+    @Test
+    void ShouldConvert9ToIX(){ assertEquals ("IX", toRoman(9));}
+
+    @Test
+    void ShouldConvert21ToXXI(){ assertEquals ("XXVI", toRoman(26));}
+
+    public StringBuilder loopAll(int number){
 
         for (int i = 0; i < number; i++) {
 
@@ -41,9 +83,8 @@ public class RomanNumbersTest {
         return romanNumbers;
     }
 
-
-
 }
+
 
 
 
