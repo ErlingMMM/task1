@@ -5,19 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RomanNumbersTest {
     StringBuilder romanNumbers = new StringBuilder("");
 
+    @Test
+    void shouldConvert1ToI(){
+        assertEquals("I", toRoman(1));
+    }
+
     private String toRoman(int number) {
-
-        if (number > 50){
-            romanNumbers.append("L");
-            number = number - 50;
-        }
-
-        if (number > 10 && number < 50){
-
-             number = writeTens(romanNumbers,number);
-
-        }
-
 
         if (number == 4){
             return romanNumbers.append("IV").toString();
@@ -34,44 +27,25 @@ public class RomanNumbersTest {
             return romanNumbers.append("X").toString();
         }
 
-        if (number > 5){
-            romanNumbers.append("V");
-            number = number - 5;
-        }
 
-        return loopAll(number).toString();
+        int tens = (number/10)%10;
 
-    }
+                if (number > 10){
+                        for (int i = 0; i < tens; i++) {
+                            romanNumbers.append("X");
+                            //number -= 10;
+                        }
+                        number -= 10*tens;
+                    }
+                       if (number > 5 ){
+                        romanNumbers.append("V");
+                        number -= 5;
+                    }
 
-    private int writeTens(StringBuilder romanNumbers, int number) {
-        String stringRoman = Integer.toString(number);
-        char [] stringRomanToChar = stringRoman.toCharArray();
+                    return loopAll(number).toString();
 
-        int tens = Integer.parseInt(String.valueOf(stringRomanToChar[0]));
+                }
 
-        int rest = 0;
-
-        for (int i = 0; i < tens ; i++) {
-            romanNumbers.append("X");
-            rest = number -= 10;
-        }
-        return rest;
-    }
-
-
-    public StringBuilder loopAll(int number){
-
-        for (int i = 0; i < number; i++) {
-
-            romanNumbers.append("I");
-        }
-        return romanNumbers;
-    }
-
-    @Test
-    void shouldConvert1ToI(){
-        assertEquals("I", toRoman(1));
-    }
 
 
     @Test
@@ -99,16 +73,19 @@ public class RomanNumbersTest {
     void ShouldConvert9ToIX(){ assertEquals ("IX", toRoman(9));}
 
     @Test
-    void ShouldConvert38ToXXXVIII(){ assertEquals ("XXXVIII", toRoman(38));}
+    void ShouldConvert21ToXXI(){ assertEquals ("XXXVII", toRoman(37));}
 
-    @Test
-    void ShouldConvert9ToI(){ assertEquals ("LXXXXIX", toRoman(99));}
+    public StringBuilder loopAll(int number){
 
+        for (int i = 0; i < number; i++) {
 
-
-
+            romanNumbers.append("I");
+        }
+        return romanNumbers;
+    }
 
 }
+
 
 
 
