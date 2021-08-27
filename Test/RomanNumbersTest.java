@@ -27,14 +27,25 @@ public class RomanNumbersTest {
             return romanNumbers.append("X").toString();
         }
 
-        if (number > 5){
-            romanNumbers.append("V");
-            number = number - 5;
-        }
 
-        return loopAll(number).toString();
+        int tens = (number/10)%10;
 
-    }
+                if (number > 10){
+                        for (int i = 0; i < tens; i++) {
+                            romanNumbers.append("X");
+                            //number -= 10;
+                        }
+                        number -= 10*tens;
+                    }
+                       if (number > 5 ){
+                        romanNumbers.append("V");
+                        number -= 5;
+                    }
+
+                    return loopAll(number).toString();
+
+                }
+
 
 
     @Test
@@ -61,7 +72,8 @@ public class RomanNumbersTest {
     @Test
     void ShouldConvert9ToIX(){ assertEquals ("IX", toRoman(9));}
 
-
+    @Test
+    void ShouldConvert21ToXXI(){ assertEquals ("XXXVII", toRoman(37));}
 
     public StringBuilder loopAll(int number){
 
@@ -72,9 +84,8 @@ public class RomanNumbersTest {
         return romanNumbers;
     }
 
-
-
 }
+
 
 
 
