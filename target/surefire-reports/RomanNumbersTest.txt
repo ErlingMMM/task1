@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: RomanNumbersTest
 -------------------------------------------------------------------------------
-Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.033 s - in RomanNumbersTest
+Tests run: 10, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.042 s <<< FAILURE! - in RomanNumbersTest
+shouldConvert1ToITest  Time elapsed: 0.007 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <III> but was: <I>
+	at RomanNumbersTest.shouldConvert1ToITest(RomanNumbersTest.java:14)
+
