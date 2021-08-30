@@ -11,7 +11,7 @@ public class RomanNumbersTest {
 
 
     @Test
-    public void shouldConvert1ToITest(){assertEquals("II", roman.toRoman(1));}
+    public void shouldConvert1ToITest(){assertEquals("I", roman.toRoman(1));}
 
     @Test
    public void ShouldConvert2ToII(){ assertEquals ("II", roman.toRoman(2));}
