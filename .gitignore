@@ -1,5 +1,3 @@
 /out/
 /.idea/
-target/
-/target/test-classes/
-/target/classes/
+/target/
